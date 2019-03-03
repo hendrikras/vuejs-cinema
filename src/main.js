@@ -9,9 +9,12 @@ import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
 import moment from 'moment-timezone';
+import { checkFilter } from './util/bus';
 // moment.
 
 Object.defineProperty(Vue.prototype, '$moment', { get() { return this.$root.moment } });
+Object.defineProperty(Vue.prototype, '$bus', { get() { return this.$root.bus } });
+
 const bus = new Vue();
 
 new Vue({
@@ -21,19 +24,8 @@ new Vue({
     time: [],
     movies: [],
     moment,
+    bus,
     day: moment()
-  },
-  methods: {
-    checkFilter(category, title, checked) {
-      if(checked){
-        this[category].push(title);
-      } else {
-        let index = this[category].indexOf(title);
-        if (index > -1) {
-          this[category].splice(index, 1)
-        }
-      }
-    }
   },
   components: {
     movieList: MovieItemList,
@@ -43,5 +35,8 @@ new Vue({
   this.$http.get('api').then(response => {
       this.movies = response.data;
     });
+  const that = checkFilter.bind(this);
+  console.log(6, that);
+  this.$bus.$on('check-filter', that);
   }
 });
