@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import './style.scss';
 
-import MovieItemList from './components/MovieItemList.vue';
-import MovieFilter from './components/MovieFilter.vue';
+import Overview from './components/Overview.vue';
 
 import VueResource from 'vue-resource';
 
@@ -28,8 +27,7 @@ new Vue({
     day: moment()
   },
   components: {
-    movieList: MovieItemList,
-    MovieFilter,
+    Overview,
   },
   created(){
   this.$http.get('api').then(response => {

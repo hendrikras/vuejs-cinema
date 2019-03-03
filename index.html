@@ -18,13 +18,14 @@
         <img src="/public/logo.png">
         <h1>Vue.js Cinema</h1>
     </div>
-    <div id="overview">
-        <div class="main">
-            <movie-list v-bind:genre="genre" v-bind:time="time" v-bind:movies="movies" v-bind:day="day._d"></movie-list>
-            <movie-filter v-bind:day="day"></movie-filter>
-        </div>
-    </div>
+    <overview v-bind:genre="genre" v-bind:time="time" v-bind:movies="movies" v-bind:day="day._d"></overview>
 </div>
 <script src="/dist/build.js"></script>
 </body>
 </html>
+<script>
+  import Overview from './src/components/Overview'
+  export default {
+    components: {Overview}
+  }
+</script>
