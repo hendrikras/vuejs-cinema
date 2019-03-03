@@ -20,8 +20,8 @@
     </div>
     <div id="overview">
         <div class="main">
-            <movie-list></movie-list>
-            <movie-filter v-on:check-filter="checkFilter"></movie-filter>
+            <movie-list v-bind:genre="genre" v-bind:time="time" v-bind:movies="movies" v-bind:day="day._d"></movie-list>
+            <movie-filter v-bind:day="day" v-on:check-filter="checkFilter"></movie-filter>
         </div>
     </div>
 </div>
